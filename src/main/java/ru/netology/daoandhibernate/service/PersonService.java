@@ -1,22 +1,31 @@
 package ru.netology.daoandhibernate.service;
 
 import org.springframework.stereotype.Service;
-import ru.netology.daoandhibernate.dao.PersonDAO;
+import ru.netology.daoandhibernate.dao.PersonRepository;
 import ru.netology.daoandhibernate.entity.Person;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
 public class PersonService {
 
-    private final PersonDAO personDAO;
+    private final PersonRepository personRepository;
 
-    public PersonService(PersonDAO personDAO) {
-        this.personDAO = personDAO;
+    public PersonService(PersonRepository personRepository) {
+        this.personRepository = personRepository;
     }
 
     public List<Person> getPersonsByCity(String city) {
-        return personDAO.getPersonsByCity(city);
+        return personRepository.getByCityOfLiving(city);
+    }
+
+    public List<Person> getPersonsByAgeLessThen(int age) {
+        return personRepository.getByPersonIdAgeLessThan(age);
+    }
+
+    public Person getPersonByNameAndSurname(String name, String surname) {
+        return personRepository.getByPersonIdNameAndPersonIdSurname(name, surname).orElseThrow(() -> new EntityNotFoundException("Person not found."));
     }
 
 }

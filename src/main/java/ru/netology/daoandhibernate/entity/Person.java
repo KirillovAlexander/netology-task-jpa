@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "Persons")
@@ -21,18 +20,6 @@ public class Person {
     private String phoneNumber;
 
     private String cityOfLiving;
-}
-
-@Embeddable
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-class PersonId implements Serializable {
-    private String name;
-
-    private String surname;
-
-    private int age;
 }
 
 
