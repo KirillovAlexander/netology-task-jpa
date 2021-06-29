@@ -17,15 +17,15 @@ public class PersonService {
     }
 
     public List<Person> getPersonsByCity(String city) {
-        return personRepository.getByCityOfLiving(city);
+        return personRepository.getPersonsByCityOfLiving(city);
     }
 
     public List<Person> getPersonsByAgeLessThen(int age) {
-        return personRepository.getByPersonIdAgeLessThan(age);
+        return personRepository.getPersonsByAgeLessThan(age);
     }
 
     public Person getPersonByNameAndSurname(String name, String surname) {
-        return personRepository.getByPersonIdNameAndPersonIdSurname(name, surname).orElseThrow(() -> new EntityNotFoundException("Person not found."));
+        return personRepository.getPersonByNameAndSurname(name, surname).orElseThrow(() -> new EntityNotFoundException("Person not found."));
     }
 
 }
